@@ -1,12 +1,12 @@
 import { Controller, Get } from '@nestjs/common';
-
+import { NotesService } from './notes.service.js';
 @Controller('notes')
 export class NotesController {
+
+    constructor(private readonly notesService : NotesService){}
+
     @Get()
     async getNotes(){
-        return [
-            {title: 'Nota 1',
-            content:'Soy la nota 1',}
-        ]
+        return this.notesService.findAll();
     }
 }
